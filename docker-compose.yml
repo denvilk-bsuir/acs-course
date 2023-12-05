@@ -22,5 +22,13 @@ services:
       - POSTGRES_DATABASE=postgres
     depends_on:
       - postgres
+
 volumes:
   postgres-data:
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.57.0/24
