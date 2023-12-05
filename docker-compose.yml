@@ -6,8 +6,8 @@ services:
     ports:
       - "6401:5432"
     environment:
-      POSTGRES_PASSWORD: "postgres"
-      PGDATA: "/data/postgres"
+      - POSTGRES_PASSWORD: "postgres"
+      - PGDATA: "/data/postgres"
     volumes:
       - postgres-data:/data/postgres
   stats:
