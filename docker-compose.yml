@@ -10,13 +10,13 @@ services:
       PGDATA: "/data/postgres"
     volumes:
       - postgres-data:/data/postgres
-  auth:
-    build: ./auth
+  stats:
+    build: ./stats
     ports:
       - "8000:8000"
     restart: on-failure
     environment:
-      - POSTGRES_HOST=users-db:5432
+      - POSTGRES_HOST=postgres:5432
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DATABASE=postgres
