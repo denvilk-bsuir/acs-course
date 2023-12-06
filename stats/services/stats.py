@@ -1,4 +1,5 @@
 from typing import List
+from datetime import timedelta, datetime
 from core.repository import AbstractRepository
 from models.schemas import StatSchema, StatBaseSchema
 
@@ -19,3 +20,13 @@ class StatsService:
     async def get_stat(self, id) -> StatSchema:
         stat = await self.stats_repo.find_one_by_id(id)
         return stat
+
+    async def get_stats_from_time(self, dt: timedelta = timedelta(hours=1)):
+        t = datetime.now() - dt
+        stats = await self.stats_repo.find_from_time(t)
+        return stats
+    
+    async def get_stats_top_100(self, dt: timedelta = timedelta(minutes=10)):
+        t = datetime.now() - dt
+        stats = await self.stats_repo.find_last_top(t)
+        return stats
